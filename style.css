@@ -572,4 +572,15 @@ body.dark-mode #theme-toggle {
   .toast {
     right: -100%;
     bottom: 20px
+
+}
+  /* Default icon color (light mode) */
+#theme-toggle i {
+  font-size: 1.4rem;
+  color: white;   /* Moon icon in light mode */
+}
+
+/* Icon color in dark mode */
+body.dark-mode #theme-toggle i {
+  color: yellow;  /* Sun icon in dark mode */
 }
