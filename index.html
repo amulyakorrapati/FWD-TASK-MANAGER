@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Title -->
+  <title>MyTask Manager</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- Prevent white flash if dark mode is saved -->
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    }
+  </script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="bg-decor"></div>
+
+  <!-- Dark Mode Toggle -->
+  <button id="theme-toggle" aria-label="Switch to dark mode" title="Switch theme">
+    <i id="theme-icon" class="uil uil-moon"></i>
+  </button>
+
+  <main class="container">
+    <!-- Page Title with Logo -->
+    <h1 id="head-text">
+      <img src="logo.png" alt="Logo" style="width:40px; height:40px; vertical-align:middle; margin-right:10px;">
+      MyTask Manager
+    </h1>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+      <span id="progress-text">0% Completed</span>
+    </div>
+
+    <!-- Input Form -->
+    <form id="newtask" aria-label="Add new task">
+      <!-- Task Name -->
+      <label for="task-input" class="sr-only">Task name</label>
+      <input id="task-input" type="text" placeholder="✍️ Add a new task..." aria-required="true">
+
+      <!-- Task Priority & Due Date on same line -->
+      <div class="task-meta">
+        <label for="task-priority" class="sr-only">Task Priority</label>
+        <select id="task-priority" aria-label="Select task priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <label for="task-due-date" class="sr-only">Task Due Date</label>
+        <input id="task-due-date" type="date" aria-label="Set task due date">
+      </div>
+
+      <!-- Add Task Button -->
+      <button id="push" type="submit">
+        <i class="uil uil-plus-circle"></i> Add
+      </button>
+    </form>
+
+    <!-- Task List -->
+    <section class="tasks" aria-live="polite" aria-label="Task list"></section>
+
+    <!-- Daily Stats -->
+    <section class="stats">
+      <h2>📊 Daily Productivity</h2>
+      <canvas id="taskChart"></canvas>
+    </section>
+  </main>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

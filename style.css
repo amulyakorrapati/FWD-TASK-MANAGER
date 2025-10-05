@@ -1,0 +1,388 @@
+/* ==============================
+   Global Variables and Base Setup
+   ============================== */
+:root {
+  --primary: #4f46e5;
+  --secondary: #06b6d4;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --light: #f8fafc;
+  --dark: #1e293b;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --border-radius: 0.8rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+}
+
+/* ==============================
+   Dark Mode Overrides
+   ============================== */
+body.dark-mode {
+  --light: #1e293b;
+  --dark: #f8fafc;
+  --shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================
+   Reset and Base Styles
+   ============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: var(--dark);
+  line-height: 1.6;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+body.dark-mode {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.bg-decor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+body.dark-mode .bg-decor {
+  opacity: 0.8;
+}
+
+/* ==============================
+   Layout and Containers
+   ============================== */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ==============================
+   Header
+   ============================== */
+#head-text {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-lg);
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ==============================
+   Theme Toggle Button
+   ============================== */
+#theme-toggle {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+#theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+body.dark-mode #theme-toggle {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+#theme-toggle i {
+  font-size: 1.4rem;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode #theme-toggle i {
+  color: #FFD700;
+}
+
+#theme-toggle:hover i {
+  color: #facc15;
+}
+
+/* ==============================
+   Progress Bar
+   ============================== */
+.progress-container {
+  background: var(--light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--dark);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: var(--progress-color, #10b981);
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+#progress-text {
+  font-weight: bold;
+  color: var(--dark);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* ==============================
+   Input Form
+   ============================== */
+#newtask {
+  background: var(--light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  color: var(--dark);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+#newtask input[type="text"] {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--dark);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+body.dark-mode #newtask input[type="text"] {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--light);
+}
+
+#newtask input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+#newtask input[type="text"]::placeholder {
+  color: #9ca3af;
+}
+
+.task-meta {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.task-meta select,
+.task-meta input[type="date"] {
+  flex: 1;
+  min-width: 150px;
+  padding: var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--dark);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+body.dark-mode .task-meta select,
+body.dark-mode .task-meta input[type="date"] {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--light);
+}
+
+#push {
+  padding: var(--spacing-md) 1.2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: 160px; /* smaller width */
+  align-self: center; /* centered below the inputs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#push:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* ==============================
+   Task List
+   ============================== */
+.tasks {
+  flex: 1;
+  background: var(--light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--spacing-lg);
+  max-height: 400px;
+  overflow-y: auto;
+  color: var(--dark);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  background: #f9fafb;
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  border-left: 6px solid transparent;
+}
+
+body.dark-mode .task {
+  background: #1e293b;
+  color: var(--light);
+}
+
+.task[data-priority="high"] {
+  border-left-color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+}
+
+.task[data-priority="medium"] {
+  border-left-color: var(--warning);
+  background: rgba(245, 158, 11, 0.1);
+  color: #78350f;
+}
+
+.task[data-priority="low"] {
+  border-left-color: var(--info);
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+}
+
+.task:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task p.checked {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task label {
+  flex: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task .task-priority-display {
+  display: none;
+}
+
+.task .task-due-date-display {
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.task .btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ==============================
+   Stats Section
+   ============================== */
+.stats {
+  background: var(--light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow);
+  color: var(--dark);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.stats h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--dark);
+  text-align: center;
+}
+
+#taskChart {
+  max-height: 300px;
+}
+
+/* ==============================
+   Responsive Design
+   ============================== */
+@media (max-width: 768px) {
+  .container { padding: var(--spacing-md); }
+  #head-text { font-size: 2rem; }
+  #newtask { flex-direction: column; align-items: stretch; }
+  .task { flex-direction: column; align-items: flex-start; gap: var(--spacing-sm); }
+  .task .btn-group { align-self: flex-end; }
+  .progress-container { flex-direction: column; align-items: stretch; gap: var(--spacing-sm); }
+  #theme-toggle { top: var(--spacing-md); right: var(--spacing-md); }
+}
